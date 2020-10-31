@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="generator" content="blogc {{ BLOGC_VERSION }}">
+    <meta name="description" content="{{ SITE_TAGLINE }}">
+    <title>{{ SITE_TITLE }}{% block entry %}{% ifdef TITLE %} — {%
+        ifdef TITLE_PREFIX %}{{ TITLE_PREFIX }} {% endif %}{{ TITLE }}{% endif %}{% endblock %}</title>
+    <link href="{{ BASE_URL }}/assets/primer.min.css" rel="stylesheet" type="text/css">
+    {%- block entry %}
+    {%- ifdef HIGHLIGHT %}
+    <link href="{{ BASE_URL }}/assets/highlight/github.css" rel="stylesheet" type="text/css">
+    {%- endif %}
+    {%- endblock %}
+    <link href="{{ BASE_URL }}/atom/" rel="alternate" type="application/atom+xml" title="{{ SITE_TITLE }}">
+    {%- foreach ATOM_TAGS %}
+    <link href="{{ BASE_URL }}/atom/{{ FOREACH_ITEM }}/" rel="alternate" type="application/atom+xml" title="{{ SITE_TITLE }} - {{ FOREACH_ITEM }}">
+    {%- endforeach %}
+  </head>
+  <body>
+    <div class="container-lg px-3 my-4">
+      <h1 class="border-bottom border-gray-light mb-5 pb-3">
+        <a class="text-gray" href="{{ BASE_URL }}/">{{ SITE_TITLE }}</a>
+      </h1>
+      {%- ifndef FILTER_TYPE %}
+      {%- foreach CONTENT_TYPES %}
+      {%- block listing_entry %}
+      <h2 class="mt-4 mb-2"><a class="text-gray" href="{{ BASE_URL }}/{{ FOREACH_ITEM }}/">{{ TITLE }}</a></h2>
+      <ul class="list-style-none">
+      {%- ifdef EMPTY %}
+        <li class="f4 mb-2">
+          No content available in this section so far.
+        </li>
+      {%- endif %}
+      {%- endblock %}
+      {%- block listing %}
+      {%- ifndef UNLISTED %}
+      {%- if TYPE == FOREACH_ITEM %}
+        <li class="f4 mb-2">
+            <a class="f3" href="{% ifdef REDIRECT %}{{ REDIRECT }}{% else %}{{ BASE_URL }}/{{ FOREACH_ITEM }}/{%
+              ifdef SLUG %}{{ SLUG }}{% else %}{{ FILENAME }}{% endif %}/{% endif %}">{{ TITLE }}</a>{%
+              ifndef HIDE_DATE %} — {{ DATE_FORMATTED }}{% endif %}
+        </li>
+      {%- endif %}
+      {%- endif %}
+      {%- endblock %}
+      {%- block listing_once %}
+      </ul>
+      {%- endblock %}
+      {%- endforeach %}
+      {%- else %}
+      {%- block listing_entry %}
+      <h2 class="mt-4 mb-2 text-gray">{{ TITLE }}</h2>
+      <ul class="list-style-none">
+      {%- ifdef EMPTY %}
+        <li class="f4 mb-2">
+          No content available in this section so far.
+        </li>
+      {%- endif %}
+      {%- endblock %}
+      {%- block listing %}
+      {%- ifndef UNLISTED %}
+      {%- if TYPE == FILTER_TYPE %}
+        <li class="f4 mb-2">
+          <a class="f3" href="{% ifdef REDIRECT %}{{ REDIRECT }}{% else %}{{ BASE_URL }}/{{ FOREACH_ITEM }}/{%
+            ifdef SLUG %}{{ SLUG }}{% else %}{{ FILENAME }}{% endif %}/{% endif %}">{{ TITLE }}</a>{%
+            ifndef HIDE_DATE %} — {{ DATE_FORMATTED }}{% endif %}
+        </li>
+      {%- endif %}
+      {%- endif %}
+      {%- endblock %}
+      {%- block listing_once %}
+      </ul>
+      {%- endblock %}
+      {%- endif %}
+      {%- block entry %}
+      <article class="markdown-body">
+        {%- ifdef TITLE %}
+        <h2>{% ifdef TITLE_PREFIX %}{{ TITLE_PREFIX }} {% endif %}{{ TITLE }}</h2>
+        {%- endif %}
+        {%- ifdef INCLUDE_TOCTREE %}
+<div class="border-bottom border-gray-light">
+{{ TOCTREE }}
+</div>
+        {%- endif %}
+{{ CONTENT }}
+        {%- ifndef HIDE_SIGNATURE %}
+        <p class="text-gray text-italic py-3">
+          – <a class="text-gray" href="mailto:{{ AUTHOR_EMAIL }}">{{ AUTHOR_NAME }}</a>. {{ DATE_FORMATTED }}.
+        </p>
+        {%- endif %}
+      </article>
+      {%- endblock %}
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-left text-sm-right text-gray text-small">
+        <p>
+          {%- block listing_once %}
+          {%- ifdef LICENSE %}
+          License: <a rel="license" href="https://spdx.org/licenses/{{ LICENSE }}.html">{{ LICENSE }}</a> |
+          {%- endif %}
+          {%- endblock %}
+          {%- block entry %}
+          {%- ifdef LICENSE %}
+          License: <a rel="license" href="https://spdx.org/licenses/{{ LICENSE }}.html">{{ LICENSE }}</a> |
+          {%- endif %}
+          {%- endblock %}
+          Powered by: <a href="https://blogc.rgm.io/">blogc {{ BLOGC_VERSION }}</a> |
+          Built {% ifdef BLOGC_SYSINFO_USERNAME %}by {{ BLOGC_SYSINFO_USERNAME }}{% endif %}
+          {%- ifdef BLOGC_SYSINFO_HOSTNAME %}{% ifdef BLOGC_SYSINFO_USERNAME %}@
+          {%- else %}at {% endif %}{{ BLOGC_SYSINFO_HOSTNAME }}
+          {%- ifdef BLOGC_SYSINFO_INSIDE_DOCKER %} (docker){% endif %} {% endif %}
+          {%- ifdef BLOGC_RUSAGE_CPU_TIME %}in {{ BLOGC_RUSAGE_CPU_TIME }}
+          {%- ifdef BLOGC_SYSINFO_DATETIME %} ({{ BLOGC_SYSINFO_DATETIME }} GMT){% endif %}
+          {%- ifdef BLOGC_RUSAGE_MEMORY %}, {% endif %}{% endif %}
+          {%- ifdef BLOGC_RUSAGE_MEMORY %}using {{ BLOGC_RUSAGE_MEMORY }}{% endif %} |
+          <a href="https://imprint.rgm.io/" rel="nofollow">Impressum/Imprint</a>
+        </p>
+      </div>
+    </div>
+    {%- block entry %}
+    <script src="{{ BASE_URL }}/assets/anchor.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            anchors.add('h3, h4, h5, h6');
+        });
+    </script>
+    {%- ifdef HIGHLIGHT %}
+    <script src="{{ BASE_URL }}/assets/highlight/highlight.pack.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var languages = [
+                {%- foreach HIGHLIGHT %}
+                '{{ FOREACH_ITEM }}',
+                {%- endforeach %}
+            ];
+            var i = 0;
+            document.querySelectorAll('pre code').forEach(function(block) {
+                if (i < languages.length && languages[i] != "no") {
+                    block.classList.add('language-' + languages[i]);
+                    hljs.highlightBlock(block);
+                }
+                i++;
+            });
+        });
+    </script>
+    {%- endif %}
+    {%- ifdef RESPONSIVE %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elements = document.querySelectorAll('article iframe, article img');
+            elements.forEach(function(block) {
+                var computed = getComputedStyle(block, null);
+                var width = parseFloat(computed.width.replace('px', ''));
+                var height = parseFloat(computed.height.replace('px', ''));
+                block.setAttribute('data-ratio', width / height);
+            });
+            function resize() {
+                var container_computed = getComputedStyle(document.querySelector('article'), null);
+                var container_width = parseFloat(container_computed.width.replace('px', ''));
+                elements.forEach(function(block) {
+                    block.setAttribute('width', container_width);
+                    block.setAttribute('height', container_width / block.getAttribute('data-ratio'));
+                });
+            }
+            resize();
+            window.addEventListener('resize', resize);
+        });
+    </script>
+    {%- endif %}
+    {%- endblock %}
+  </body>
+</html>

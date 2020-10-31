@@ -1,0 +1,39 @@
+This was downloaded from https://highlightjs.org/download/ with following
+languages enabled:
+
+Bash
+C
+C++
+C-like foundation grammar for C/C++ grammars
+CSS
+Diff
+Go
+HTML,XML
+HTTP
+JSON
+JavaScript
+Lua
+Makefile
+Markdown
+Nginx config
+Plain text
+Python
+Python REPL
+SCSS
+SQL
+Shell Session
+TOML, also INI
+YAML
+ARM Assembly
+AVR Assembly
+Arduino
+CMake
+Dockerfile
+G-code (ISO 6983)
+Intel x86 Assembly
+Matlab
+OpenSCAD
+PostgreSQL and PL/pgSQL
+Protocol Buffers
+Test Anything Protocol
+Vim Script

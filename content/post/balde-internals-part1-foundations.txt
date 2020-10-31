@@ -1,0 +1,72 @@
+TITLE: balde internals, part 1: Foundations
+DATE: 2016-05-21 15:25:00
+TAGS: balde gentoo posts
+TYPE: post
+UNLISTED:
+-------------------------------------------
+> **Warning:** This is a legacy post. I have no plans to write more posts
+> in this series.
+
+For those of you that don't know, as I never actually announced the project here,
+I'm working on a microframework to develop web applications in C since 2013.
+It is called [balde](https://balde.rgm.io/), and I consider its code ready
+for a formal release now, despite not having all the features I planned for
+it. Unfortunately its [documentation](https://balde.rgm.io/doc/) is not good
+enough yet.
+
+I don't work on it for quite some time, then I don't remember how everything
+works, and can't write proper documentation. To make this easier, I'm starting
+a series of posts here in this blog, describing the internals of the framework
+and the design decisions I made when creating it, so I can remember how it
+works gradually. Hopefully in the end of the series I'll be able to integrate
+the posts with the official documentation of the project and release it! \\o/
+
+Before the release, users willing to try balde must install it manually from
+[Github](https://github.com/balde/balde) or using my [Gentoo overlay]
+(https://github.com/rafaelmartins/gentoo-overlay) (package is called
+`net-libs/balde` there). The previously released versions are very old and
+deprecated at this point.
+
+So, I'll start talking about the foundations of the framework. It is based on
+[GLib](https://developer.gnome.org/glib/), that is the base library used by
+Gtk+ and GNOME applications. balde uses it as an utility library, without
+implementing classes or relying on advanced features of the library. That's
+because I plan to migrate away from GLib in the future, reimplementing the
+required functionality in a BSD-licensed library. I have a list of functions
+that must be implemented to achieve this objective in the
+[wiki](https://github.com/balde/balde/wiki/Converting-from-LGPL-to-BSD), but
+this is not something with high priority for now.
+
+Another important foundation of the framework is the template engine. Instead
+of parsing templates in runtime, balde will parse templates in build time,
+generating C code, that is compiled into the application binary. The template
+engine is based on a recursive-descent parser, built with a parsing expression
+grammar. The grammar is simple enough to be easily extended, and implements
+most of the features needed by a basic template engine. The template engine
+is implemented as a binary, that reads the templates and generates the C source
+files. It is called `balde-template-gen` and will be the subject of a
+dedicated post in this series.
+
+A notable deficiency of the template engine is the lack of iterators, like
+`for` and `while` loops. This is a side effect of another basic characteristic
+of balde: all the data parsed from requests and sent to responses is stored as
+string into the internal structures, and all the public interfaces follow the
+same principle. That means that the current architecture does not allow passing
+a list of items to a template. And that also means that the users must handle
+type conversions from and to strings, as needed by their applications.
+
+Static files are also converted to C code and compiled into the application
+binary, but here balde just relies on [GLib GResource infrastructure]
+(https://developer.gnome.org/gio/stable/glib-compile-resources.html). This is
+something that should be reworked in the future too. Integrate templates and
+static resources, implementing a concept of themes, is something that I want
+to do as soon as possible.
+
+To make it easier for newcomers to get started with balde, it comes with a
+binary that can create a skeleton project using GNU Autotools, and with basic
+unit test infrastructure. The binary is called `balde-quickstart` and will be
+the subject of a dedicated post here as well.
+
+That's all for now.
+
+In the next post I'll talk about how URL routing works.

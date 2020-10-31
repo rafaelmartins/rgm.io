@@ -1,0 +1,20 @@
+TITLE: Applications of Linux and Free Software in Engineering
+TITLE_PREFIX: Talk:
+DATE: 2011-11-18
+TYPE: talk
+HIDE_SIGNATURE:
+-------------------------------------------------------------------
+
+### Event
+
+LinuxCon Brazil 2011 - São Paulo/SP - Nov 18, 2011
+
+
+### Language
+
+Brazilian Portuguese
+
+
+### Presentation
+
+[Download PDF](/files/talk/linuxcon2011-linuxeng.pdf)

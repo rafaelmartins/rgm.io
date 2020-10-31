@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  {%- if FILTER_TAG == "posts" %}
+  <title type="text">{{ SITE_TITLE }}</title>
+  <id>{{ BASE_DOMAIN }}{{ BASE_URL }}/atom/index.xml</id>
+  <link href="{{ BASE_DOMAIN }}{{ BASE_URL }}/atom/" rel="self" />
+  {%- else %}
+  <title type="text">{{ SITE_TITLE }} - {{ FILTER_TAG }}</title>
+  <id>{{ BASE_DOMAIN }}{{ BASE_URL }}/atom/{{ FILTER_TAG }}/index.xml</id>
+  <link href="{{ BASE_DOMAIN }}{{ BASE_URL }}/atom/{{ FILTER_TAG }}/" rel="self" />
+  {%- endif %}
+  <link href="{{ BASE_DOMAIN }}{{ BASE_URL }}/" />
+  <updated>{% ifndef DATE_FIRST_FORMATTED %}1970-01-01T00:00:00Z{% endif %}{{ DATE_FIRST_FORMATTED }}</updated>
+  <author>
+    <name>{{ AUTHOR_NAME }}</name>
+    <email>{{ AUTHOR_EMAIL }}</email>
+  </author>
+  <subtitle type="text">{{ SITE_TAGLINE }}</subtitle>
+  <generator version="{{ BLOGC_VERSION }}">blogc</generator>
+  {%- block listing %}
+  {%- ifndef REDIRECT %}
+  <entry>
+    <title type="text">{{ TITLE }}</title>
+    <id>{{ BASE_DOMAIN }}{{ BASE_URL }}/{% ifdef TYPE %}{{ TYPE }}/{% endif %}{{ FILENAME }}/index.html</id>
+    <updated>{{ DATE_FORMATTED }}</updated>
+    <published>{{ DATE_FORMATTED }}</published>
+    <link href="{{ BASE_DOMAIN }}{{ BASE_URL }}/{% ifdef TYPE %}{{ TYPE }}/{% endif %}{{ FILENAME }}/" />
+    <author>
+      <name>{{ AUTHOR_NAME }}</name>
+      <email>{{ AUTHOR_EMAIL }}</email>
+    </author>
+    <content type="html">
+      <![CDATA[{{ CONTENT }}]]>
+    </content>
+  </entry>
+  {%- endif %}
+  {%- endblock %}
+</feed>

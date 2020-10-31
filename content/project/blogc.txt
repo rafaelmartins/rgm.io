@@ -1,0 +1,6 @@
+TITLE: blogc - A blog compiler
+DATE: 2020-09-23 23:56:47
+TYPE: project
+HIDE_DATE:
+REDIRECT: https://blogc.rgm.io/
+-------------------------------
