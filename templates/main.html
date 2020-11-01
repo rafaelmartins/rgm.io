@@ -63,7 +63,7 @@
       {%- ifndef UNLISTED %}
       {%- if TYPE == FILTER_TYPE %}
         <li class="f4 mb-2">
-          <a class="f3" href="{% ifdef REDIRECT %}{{ REDIRECT }}{% else %}{{ BASE_URL }}/{{ FOREACH_ITEM }}/{%
+          <a class="f3" href="{% ifdef REDIRECT %}{{ REDIRECT }}{% else %}{{ BASE_URL }}/{{ FILTER_TYPE }}/{%
             ifdef SLUG %}{{ SLUG }}{% else %}{{ FILENAME }}{% endif %}/{% endif %}">{{ TITLE }}</a>{%
             ifndef HIDE_DATE %} — {{ DATE_FORMATTED }}{% endif %}
         </li>
