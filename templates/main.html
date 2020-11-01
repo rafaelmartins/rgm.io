@@ -38,9 +38,9 @@
       {%- ifndef UNLISTED %}
       {%- if TYPE == FOREACH_ITEM %}
         <li class="f4 mb-2">
-            <a class="f3" href="{% ifdef REDIRECT %}{{ REDIRECT }}{% else %}{{ BASE_URL }}/{{ FOREACH_ITEM }}/{%
-              ifdef SLUG %}{{ SLUG }}{% else %}{{ FILENAME }}{% endif %}/{% endif %}">{{ TITLE }}</a>{%
-              ifndef HIDE_DATE %} — {{ DATE_FORMATTED }}{% endif %}
+          <a class="f3" href="{% ifdef REDIRECT %}{{ REDIRECT }}{% else %}{{ BASE_URL }}/{{ FOREACH_ITEM }}/{%
+            ifdef SLUG %}{{ SLUG }}{% else %}{{ FILENAME }}{% endif %}/{% endif %}">{{ TITLE }}</a>{%
+            ifndef HIDE_DATE %} — {{ DATE_FORMATTED }}{% endif %}
         </li>
       {%- endif %}
       {%- endif %}
