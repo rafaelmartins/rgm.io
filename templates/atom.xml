@@ -5,7 +5,7 @@
   <id>{{ BASE_DOMAIN }}{{ BASE_URL }}/atom/index.xml</id>
   <link href="{{ BASE_DOMAIN }}{{ BASE_URL }}/atom/" rel="self" />
   {%- else %}
-  <title type="text">{{ SITE_TITLE }} - {{ FILTER_TAG }}</title>
+  <title type="text">{{ SITE_TITLE }} — {{ FILTER_TAG }}</title>
   <id>{{ BASE_DOMAIN }}{{ BASE_URL }}/atom/{{ FILTER_TAG }}/index.xml</id>
   <link href="{{ BASE_DOMAIN }}{{ BASE_URL }}/atom/{{ FILTER_TAG }}/" rel="self" />
   {%- endif %}
