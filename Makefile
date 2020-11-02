@@ -3,7 +3,7 @@
 AUTHOR_NAME      = "Rafael Martins"
 AUTHOR_EMAIL     = "rafael@rafaelmartins.eng.br"
 SITE_TITLE       = "Rafael Martins"
-SITE_TAGLINE     = "Rafael Martins' website."
+SITE_TAGLINE     = "Rafael Martins' website"
 BASE_DOMAIN      = "https://rgm.io"
 LICENSE          = "CC-BY-NC-ND-4.0"
 LOCALE           = "en_US.utf-8"
@@ -169,6 +169,7 @@ $(OUTPUT_DIR)/%/index.html: content/%/index.txt $(CONTENT_LIST) templates/main.h
 		-D DATE_FORMAT=$(DATE_FORMAT) \
 		-D FILTER_TYPE=$* \
 		-l \
+		-e $< \
 		-e $< \
 		-o $@ \
 		-t templates/main.html \

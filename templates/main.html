@@ -4,9 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="generator" content="blogc {{ BLOGC_VERSION }}">
+    {%- ifdef FILTER_TYPE %}
+    {%- block listing_entry %}
+    <title>{{ SITE_TITLE }} — {{ TITLE }}</title>
+    <meta name="description" content="{{ SITE_TAGLINE }} — {{ TITLE }}">
+    {%- endblock %}
+    {%- else %}
+    {%- block listing_once %}
+    <title>{{ SITE_TITLE }}</title>
     <meta name="description" content="{{ SITE_TAGLINE }}">
-    <title>{{ SITE_TITLE }}{% block entry %}{% ifdef TITLE %} — {%
-        ifdef TITLE_PREFIX %}{{ TITLE_PREFIX }} {% endif %}{{ TITLE }}{% endif %}{% endblock %}</title>
+    {%- endblock %}
+    {%- endif %}
+    {%- block entry %}
+    <title>{{ SITE_TITLE }} — {% ifdef TITLE_PREFIX %}{{ TITLE_PREFIX }} {% endif %}{{ TITLE }}</title>
+    <meta name="description" content="{{ DESCRIPTION }}{% ifndef DESCRIPTION %}{{ SITE_TAGLINE }}{% endif %}">
+    {%- endblock %}
     <link href="{{ BASE_URL }}/assets/primer.min.css" rel="stylesheet" type="text/css">
     {%- block entry %}
     {%- ifdef HIGHLIGHT %}
@@ -80,7 +92,7 @@
         <h2>{% ifdef TITLE_PREFIX %}{{ TITLE_PREFIX }} {% endif %}{{ TITLE }}</h2>
         {%- endif %}
         {%- ifdef INCLUDE_TOCTREE %}
-<div class="border-bottom border-gray-light">
+<div class="border-bottom border-gray-light mb-3">
 {{ TOCTREE }}
 </div>
         {%- endif %}
