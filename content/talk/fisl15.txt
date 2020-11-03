@@ -3,6 +3,7 @@ TITLE_PREFIX: Talk:
 DATE: 2014-05-10
 TYPE: talk
 RESPONSIVE:
+EMBETTY:
 HIDE_SIGNATURE:
 -----------------------------------------------------
 
@@ -23,10 +24,4 @@ Brazilian Portuguese
 
 ### Video
 
-<iframe
-    width="640"
-    height="360"
-    src="//www.youtube-nocookie.com/embed/deNkN5azuwI"
-    frameborder="0"
-    allowfullscreen>
-</iframe>
+<embetty-video type="youtube" video-id="deNkN5azuwI"></embetty-video>

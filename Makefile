@@ -8,6 +8,7 @@ BASE_DOMAIN      = "https://rgm.io"
 LICENSE          = "CC-BY-NC-ND-4.0"
 LOCALE           = "en_US.utf-8"
 TOCTREE_MAXDEPTH = "2"
+EMBETTY_SERVER   = "https://embetty.rgm.io/"
 
 # content should be sorted in the order wanted for index.
 # atom feeds will sort automatically by date.
@@ -87,6 +88,7 @@ PRIMER_SCSS = \
 
 ASSETS = \
 	anchor.min.js \
+	embetty.min.js \
 	highlight/github.css \
 	highlight/highlight.pack.js \
 	$(NULL)
@@ -126,6 +128,7 @@ BLOGC_COMMAND = \
 		-D BASE_DOMAIN=$(BASE_DOMAIN) \
 		-D LICENSE=$(LICENSE) \
 		-D TOCTREE_MAXDEPTH=$(TOCTREE_MAXDEPTH) \
+		-D EMBETTY_SERVER=$(EMBETTY_SERVER) \
 		-D BASE_URL=$(BASE_URL) \
 		-D ATOM_TAGS="$(ATOM_TAGS)" \
 		-D CONTENT_TYPES="$(CONTENT_TYPES)" \
