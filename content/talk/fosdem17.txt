@@ -3,7 +3,6 @@ TITLE_PREFIX: Talk:
 DATE: 2017-02-04
 TYPE: talk
 RESPONSIVE:
-EMBETTY:
 HIDE_SIGNATURE:
 ----------------------------------------------------------
 
@@ -26,9 +25,21 @@ English
 
 ### Video (recording)
 
-<embetty-video type="youtube" video-id="fK-d4OdjC60"></embetty-video>
+<iframe
+    width="640"
+    height="360"
+    src="//www.youtube-nocookie.com/embed/fK-d4OdjC60"
+    frameborder="0"
+    allowfullscreen>
+</iframe>
 
 
 ### Video (demonstration)
 
-<embetty-video type="youtube" video-id="FJbI36d5HJM"></embetty-video>
+<iframe
+    width="640"
+    height="360"
+    src="//www.youtube-nocookie.com/embed/FJbI36d5HJM"
+    frameborder="0"
+    allowfullscreen>
+</iframe>

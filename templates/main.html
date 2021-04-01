@@ -29,12 +29,6 @@
     {%- foreach ATOM_TAGS %}
     <link href="{{ BASE_URL }}/atom/{{ FOREACH_ITEM }}/" rel="alternate" type="application/atom+xml" title="{{ SITE_TITLE }} — {{ FOREACH_ITEM }}">
     {%- endforeach %}
-    {%- block entry %}
-    {%- ifdef EMBETTY %}
-    <meta data-embetty-server="{{ EMBETTY_SERVER }}">
-    <script async src="{{ BASE_URL }}/assets/embetty.min.js"></script>
-    {%- endif %}
-    {%- endblock %}
   </head>
   <body>
     <div class="container-lg px-3 my-4">
