@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,17 +8,36 @@
     {%- block listing_entry %}
     <title>{{ SITE_TITLE }} — {{ TITLE }}</title>
     <meta name="description" content="{{ SITE_TAGLINE }} — {{ TITLE }}">
+    <meta property="og:title" content="{{ SITE_TITLE }} — {{ TITLE }}">
+    <meta property="og:description" content="{{ SITE_TAGLINE }} — {{ TITLE }}">
+    <meta property="og:url" content="{{ BASE_DOMAIN }}{{ BASE_URL }}/{{ FILTER_TYPE }}/">
+    {%- ifdef IMAGE %}
+    <meta property="og:image" content="{{ BASE_DOMAIN }}{{ BASE_URL }}/{{ IMAGE }}">
+    {%- endif %}
     {%- endblock %}
     {%- else %}
     {%- block listing_once %}
     <title>{{ SITE_TITLE }}</title>
     <meta name="description" content="{{ SITE_TAGLINE }}">
+    <meta property="og:title" content="{{ SITE_TITLE }}">
+    <meta property="og:description" content="{{ SITE_TAGLINE }}">
+    <meta property="og:url" content="{{ BASE_DOMAIN }}{{ BASE_URL }}/">
+    {%- ifdef SITE_IMAGE %}
+    <meta property="og:image" content="{{ BASE_DOMAIN }}{{ BASE_URL }}/{{ SITE_IMAGE }}">
+    {%- endif %}
     {%- endblock %}
     {%- endif %}
     {%- block entry %}
     <title>{{ SITE_TITLE }} — {% ifdef TITLE_PREFIX %}{{ TITLE_PREFIX }} {% endif %}{{ TITLE }}</title>
     <meta name="description" content="{{ DESCRIPTION }}{% ifndef DESCRIPTION %}{{ SITE_TAGLINE }}{% endif %}">
+    <meta property="og:title" content="{{ SITE_TITLE }} — {% ifdef TITLE_PREFIX %}{{ TITLE_PREFIX }} {% endif %}{{ TITLE }}">
+    <meta property="og:description" content="{{ DESCRIPTION }}{% ifndef DESCRIPTION %}{{ SITE_TAGLINE }}{% endif %}">
+    <meta property="og:url" content="{{ BASE_DOMAIN }}{{ BASE_URL }}/{% ifdef TYPE %}{{ TYPE }}/{% endif %}{{ FILENAME }}/">
+    {%- ifdef IMAGE %}
+    <meta property="og:image" content="{{ BASE_DOMAIN }}{{ BASE_URL }}/{{ IMAGE }}">
+    {%- endif %}
     {%- endblock %}
+    <meta property="og:type" content="website">
     <link href="{{ BASE_URL }}/assets/primer.min.css" rel="stylesheet" type="text/css">
     {%- block entry %}
     {%- ifdef HIGHLIGHT %}
